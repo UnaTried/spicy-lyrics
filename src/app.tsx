@@ -468,15 +468,11 @@ async function main() {
 
   RegisterSidebarLyrics();
   function registerButton(button: typeof ButtonList) {
-    if (!button.Button) return;
-    if (button.Registered) return;
+    if (!button.Button || button.Registered) return;
     button.Button.register();
     button.Registered = true;
-    if (button.Button.label !== "Spicy Lyrics" && storage.get("replace_lyrics_button") !== "true") return;
-    const oldLyrics = document.getElementsByClassName("main-nowPlayingBar-lyricsButton",);
-    for (const oldBtn of Array.from(oldLyrics)) {
-      oldBtn.replaceWith(button.Button.element);
-    }
+    if (button.Button.label !== "Spicy Lyrics" || storage.get("replace_lyrics_button") !== "true") return;
+    document.querySelector(".main-nowPlayingBar-lyricsButton")?.replaceWith(button.Button.element);
   }
 
   // console.log("[Spicy Lyrics Debug] Setting up initial sidebar status check");
