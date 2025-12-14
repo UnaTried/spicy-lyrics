@@ -471,8 +471,7 @@ async function main() {
     if (!button.Button || button.Registered) return;
     button.Button.register();
     button.Registered = true;
-    if (button.Button.label !== "Spicy Lyrics" || button.Button.icon !== Icons.LyricsPage || storage.get("replace_lyrics_button") !== "true") return;
-    document.querySelector(".main-nowPlayingBar-lyricsButton")?.replaceWith(button.Button.element);
+    if (button.Button.label == "Spicy Lyrics" || button.Button.icon == Icons.LyricsPage || storage.get("replace_lyrics_button") == "true") document.querySelector(".main-nowPlayingBar-lyricsButton")?.replaceWith(button.Button.element);
   }
 
   // console.log("[Spicy Lyrics Debug] Setting up initial sidebar status check");
